@@ -1,0 +1,22 @@
+# ソフトウェアのアップデート確認
+softwareupdate -l
+
+# ソフトウェアのアップデート
+softwareupdate -ia
+
+# メジャーバージョンアップ
+# sudo softwareupdate -i -a -R
+
+# 起動音をオフにする
+sudo nvram StartupMute=%01
+
+# 隠しファイル表示
+defaults write com.apple.finder AppleShowAllFiles TRUE
+
+# Finderウィンドウ下部のパスバーを表示する設定
+defaults write com.apple.finder ShowPathbar -bool true
+
+# ステータスバーを表示
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# ゴミ箱を空にする際の確認警告を無効化する設定

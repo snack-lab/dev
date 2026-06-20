@@ -1,0 +1,14 @@
+### ignore all ###
+/*
+/.**
+
+## not ignore ###
+!/config
+!/git
+!/os
+!/tmux
+!/vim
+!/zsh
+!/.gitattributes
+!/.gitignore
+!/README.md
