@@ -5,6 +5,7 @@
 ## not ignore ###
 !/config
 !/git
+!/opencode
 !/os
 !/tmux
 !/vim
