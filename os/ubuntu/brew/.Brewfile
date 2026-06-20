@@ -1,0 +1,6 @@
+brew "git"
+brew "vim"
+brew "tmux"
+brew "lazygit"
+brew "midnight-commander"
+brew "openssh"
