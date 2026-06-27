@@ -1,0 +1,78 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": "notify",
+  "disabled_providers": [
+    "opencode"
+  ],
+  "default_agent": "plan",
+  "watcher": {
+    "ignore": [
+      "node_modules/**"
+    ]
+  },
+  "model": "dmr/gemma4:E4B",
+  "provider": {
+    "dmr": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Docker Model Runner",
+      "options": {
+        "baseURL": ""
+      },
+      "models": {
+        "gemma4:E4B": {
+          "name": "gemma4:E4B"
+        }
+      }
+    }
+  },
+  "instructions": [
+    "README.md"
+  ],
+  "permission": {
+    "bash": {
+      "*": "allow",
+      "rm *": "ask",
+      "git status *": "allow",
+      "git diff *": "allow",
+      "git log *": "allow",
+      "git branch *": "allow",
+      "git checkout *": "allow",
+      "git add *": "allow",
+      "git commit *": "allow",
+      "git push *": "ask",
+      "git pull *": "ask",
+      "git pull --force *": "deny",
+      "git pull -f *": "deny",
+      "git reset --hard *": "deny",
+      "git clean -fd *": "deny",
+      "git branch -D *": "deny",
+      "git checkout -- *": "deny",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow",
+      "ssh *": "deny",
+      "scp *": "deny",
+      "sftp *": "deny",
+      "telnet *": "deny",
+      "ftp *": "deny",
+      "npm *": "ask"
+    },
+    "read": {
+      "*": "allow",
+      "*.env.example": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.pem": "deny",
+      "*.key": "deny"
+    },
+    "webfetch": "ask",
+    "external_directory": "deny"
+  },
+  "mcp": {
+    "mdn": {
+      "type": "remote",
+      "url": "https://mcp.mdn.mozilla.net/",
+      "enabled": true
+    }
+  }
+}
