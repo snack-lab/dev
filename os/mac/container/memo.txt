@@ -1,0 +1,13 @@
+# https://github.com/apple/container/tree/main/docs
+
+container system start
+
+container build -t local/ubuntu-machine:latest .
+container machine create local/ubuntu-machine:latest --name dev --set-default
+container machine run
+container machine stop
+
+container machine rm dev
+container image rm local/ubuntu-machine
+
+container system stop
