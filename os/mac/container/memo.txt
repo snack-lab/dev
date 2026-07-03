@@ -4,7 +4,7 @@ container system start
 
 container build -t local/ubuntu-machine:latest .
 container machine create local/ubuntu-machine:latest --name dev --set-default
-container machine run
+container machine run --env-file .env
 container machine stop
 
 container machine rm dev

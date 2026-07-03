@@ -2,13 +2,17 @@
 
 ARG UBUNTU_VERSION=24.04
 ARG NODE_VERSION=24.18.0
+ARG RUST_VERSION=1.96.1
 
 # node build stage
-FROM node:${NODE_VERSION}-bookworm-slim AS node_build
+FROM node:${NODE_VERSION}-trixie-slim AS node_build
 WORKDIR /app
 RUN --mount=type=cache,id=dev_node,target=/tmp/.npm \
       npm_config_cache=/tmp/.npm \
-      npm i -g --no-audit --progress=false npm opencode-ai
+      npm i -g --no-audit --progress=false npm
+
+# rust build stage
+FROM rust:${RUST_VERSION}-slim-trixie AS rust_build
 
 # ubuntu build stage
 FROM ubuntu:${UBUNTU_VERSION}
@@ -24,12 +28,15 @@ RUN --mount=type=cache,id=dev_apt_cache,target=/var/cache/apt,sharing=locked \
       apt-get -qq update > /dev/null \
       && apt-get -qq install -y \
       dbus systemd openssh-server net-tools iproute2 iputils-ping curl wget man sudo language-pack-ja-base language-pack-ja locales tzdata git vim tmux mc > /dev/null \
-      && apt-get clean \
-      && rm -rf /var/lib/apt/lists/*
+      && apt-get clean
 
 # node
 COPY --from=node_build --link /usr/local/bin/ /usr/local/bin/
 COPY --from=node_build --link /usr/local/lib/node_modules /usr/local/lib/node_modules
+
+# rust
+COPY --from=rust_build --link /usr/local/cargo /usr/local/cargo
+COPY --from=rust_build --link /usr/local/rustup /usr/local/rustup
 
 # Locale setup
 RUN locale-gen ja_JP.UTF-8 \
