@@ -16,7 +16,7 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "Docker Model Runner",
       "options": {
-        "baseURL": ""
+        "baseURL": "http://model-runner.docker.internal/v1"
       },
       "models": {
         "gemma4:E4B": {
