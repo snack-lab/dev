@@ -2,14 +2,14 @@
 
 ARG UBUNTU_VERSION=24.04
 ARG NODE_VERSION=24.18.0
-ARG RUST_VERSION=1.97.0
+ARG RUST_VERSION=1.97.1
 
 # node build stage
 FROM node:${NODE_VERSION}-trixie-slim AS node_build
 WORKDIR /app
 RUN --mount=type=cache,id=dev_node,target=/tmp/.npm \
       npm_config_cache=/tmp/.npm \
-      npm i -g --no-audit --progress=false npm
+      npm i -g --no-audit --progress=false npm opencode-ai @github/copilot
 
 # rust build stage
 FROM rust:${RUST_VERSION}-slim-trixie AS rust_build
@@ -27,7 +27,7 @@ RUN --mount=type=cache,id=dev_apt_cache,target=/var/cache/apt,sharing=locked \
       --mount=type=cache,id=dev_apt_lib,target=/var/lib/apt,sharing=locked \
       apt-get -qq update > /dev/null \
       && apt-get -qq install -y \
-      dbus systemd openssh-server iproute2 curl wget man sudo language-pack-ja-base language-pack-ja locales tzdata git vim tmux mc > /dev/null \
+      dbus systemd openssh-server iproute2 curl wget man sudo language-pack-ja-base language-pack-ja locales tzdata git vim tmux mc gcc > /dev/null \
       && apt-get clean \
       && yes | unminimize
 
