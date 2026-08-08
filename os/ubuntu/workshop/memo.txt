@@ -5,6 +5,7 @@ workshop shell
 workshop stop
 workshop refresh
 workshop changes
+workshop remove
 
 workshop sketch-sdk
 workshop sketch-sdk --eject --name base
@@ -12,3 +13,7 @@ workshop sketch-sdk --eject --name base
 workshop warnings
 sudo nft insert rule ip filter DOCKER-USER iifname workshopbr0 accept
 sudo nft insert rule ip filter DOCKER-USER oifname workshopbr0 ct state related,established accept
+
+sdk find
+sdk info
+skd list

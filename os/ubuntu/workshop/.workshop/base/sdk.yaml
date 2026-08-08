@@ -1,5 +1,8 @@
 # For details: https://ubuntu.com/workshop/docs/explanation/sdks/concepts/#sketch-sdk
 name: base
+version: 1.0
+summary: Base SDK for the workshop
+description: This is the base SDK for the workshop.
 plugs:
 # Use this configuration to mount a host directory to the workshop
 # models:

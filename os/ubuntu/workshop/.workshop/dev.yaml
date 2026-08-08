@@ -1,28 +1,25 @@
 name: dev
 base: ubuntu@24.04
 sdks:
-  - name: project-base
-  - name: vscode-remote
-  - name: ollama
-    channel: latest/stable
-  - name: opencode
-    channel: latest/stable
-  - name: copilot
-    channel: latest/stable
-  - name: rust
-    channel: latest/stable
-  - name: node
-    channel: 24/stable
+    - name: project-base
+    - name: vscode-remote
+    - name: ollama
+      channel: latest/stable
+    - name: node
+      channel: 24/stable
+    # - name: rust
+    #   channel: latest/stable
 
 actions:
-    opencode: opencode "$@"
-    copilot-yolo: copilot --yolo --interactive="$@"
-    copilot-yolo-prompt: copilot --yolo --prompt="$@"
-    build: cargo build "$@"
-    doc: cargo doc "$@"
-    lint: cargo clippy "$@"
-    test: cargo test "$@"
+    # build: cargo build "$@"
+    # doc: cargo doc "$@"
+    # lint: cargo clippy "$@"
+    # test: cargo test "$@"
     pull: |
         ollama pull "$@"
     run: |
         ollama run "$@"
+    install: |
+        npm install
+    test: |
+        npm test
